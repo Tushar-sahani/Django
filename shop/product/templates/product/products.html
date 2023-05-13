@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %} {% static "css/product.css" %} {% endblock %}
+{% block title %} product {% endblock %}
+
+{% block body %} 
+    <!-- ***************** header ***************** -->
+    {% include "product/header.html" %}
+    <div id="product-main-con">
+        <main>
+            <img src="{{product.image.url}}">
+            <div>
+                <h1>{{product.title}}</h1>
+                <p>{{product.brand.title}}</p>
+                <p>{{product.description}}</p>
+                <button>Add to card</button>
+            </div>
+        </main>
+        <section id="feedback">
+            <h3>Customer's feedbacks:</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ forms.name.label_tag }}<br>
+                    {{forms.name}}<br>
+                    {{forms.email.label_tag}}<br>
+                    {{forms.email}}<br>
+                    <button type="submit">Submit</button>
+                </form>
+        </section>
+    </div>
+{% endblock %}

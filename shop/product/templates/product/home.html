@@ -1,0 +1,59 @@
+{% extends "base.html"%}
+{% load static %}
+{% block title %} Myshop {% endblock title %}
+
+{% block body %}
+    <!-- ***************** header ***************** -->
+    {% include "product/header.html" %}
+
+    <!-- ***************** main content ***************** -->
+    <section id="intro">
+        <div style="width: 50%;">
+            <h1>Best Clothing Quality</h1>   
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis porro quam fugiat accusantium ab velit tenetur perspiciatis autem, ipsa obcaecati at blanditiis? Unde, consectetur itaque nemo modi consequuntur obcaecati accusantium?</p>
+            <a onclick="hideNav()">Become a member</a>
+        </div>
+
+        <video controls>
+            <source src="{% static "vedio/intro-video.mp4"%}">
+        </video>
+    </section>
+    
+
+    <!-- ***************** Category ***************** 
+    <nav id="nav-cat">
+        <a>Suit</a>
+        <a>Shirt</a>
+        <a>Dress</a>
+        <a>Shoes</a>
+    </nav>
+    -->
+    
+    <!-- ***************** Product card ***************** -->
+    <div class="product-nav">
+        <h3>Suits</h3>
+        <a href="suits.html">View all suits</a>
+    </div>
+    <main id="products-intro">
+        {% for product in products %}
+            <div class="product-card">
+                <div class="review-con"><p>Reviews 4.8⭐</p></div>
+                <img src="{{product.image.url}}" class="product-img">
+                <div style="padding:20px 25px">
+                    <h3>{{product.title}}</h3>
+                    <p>{{product.description}}</p>
+                    <a href="{% url "product_page" product.brand.title product.slug %}">View Product</a>
+                </div>
+            </div>
+        {% endfor %}
+    
+    </main>
+
+
+    <!-- ***************** Footer ***************** -->
+    <footer>
+        <h2>This is my footer.</h2>
+    </footer>
+{% endblock body %}
+
+   
