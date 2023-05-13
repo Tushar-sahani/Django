@@ -29,7 +29,7 @@ def suit(request,product):
 def product_page(request,product_brand,product_slug):
     form  = Feedbackform(request.POST)
     product = Product.objects.get(slug = product_slug)
-    if request.method =="GET":
+    if request.method =="POST":
         return render(request, "product/products.html",{
         "product": product,
         "forms":form,
