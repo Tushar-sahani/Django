@@ -19,6 +19,11 @@
         </main>
         <section id="feedback">
             <h3>Customer's feedbacks:</h3>
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:green">{{message}}</p>
+                {% endfor%}
+            {% endif %}
                 <form method="POST">
                     {% csrf_token %}
                     
@@ -26,9 +31,9 @@
                         {{field.label_tag}}<br>
                         {{field}}<br>
 
-                        {% for error in field.errors %}
+                        {% comment %} {% for error in field.errors %}
                             <p style="color:red">{{error}}</p><br>
-                        {% endfor %}
+                        {% endfor %} {% endcomment %}
                     {% endfor %}
                     <button type="submit">Submit</button>
                 </form>

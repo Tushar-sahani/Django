@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product
+from .models import Product,Feedback
 from .forms import Feedbackform
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -29,14 +30,22 @@ def suit(request,product):
 def product_page(request,product_brand,product_slug):
     form  = Feedbackform(request.POST)
     product = Product.objects.get(slug = product_slug)
-    if request.method =="POST":
+    if request.method =="GET":
         return render(request, "product/products.html",{
         "product": product,
         "forms":form,
         })
     else:
+        form = Feedbackform(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
+            feeback = Feedback(
+                name = form.cleaned_data["name"],
+                rating = form.cleaned_data["rating"],
+                product = product,
+                text = form.cleaned_data["text"],
+            )
+            feeback.save()
+            messages.success(request,"Your form is Subimited")
         return render(request, "product/products.html",{
         "product": product,
         "forms":form,
