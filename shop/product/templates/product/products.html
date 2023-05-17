@@ -38,5 +38,14 @@
                     <button type="submit">Submit</button>
                 </form>
         </section>
+        <sectio class="all_fidback" style="">
+            {% for feedback in allFeedbacks %}
+                <div class="card">
+                    
+                    <h4>{{feedback.product}}-{{feedback.rating}} stars</h4>
+                    <p>{{feedback.text}}</p>
+                </div>
+            {% endfor %}
+        </sectio>
     </div>
 {% endblock %}
