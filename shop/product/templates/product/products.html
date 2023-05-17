@@ -41,8 +41,14 @@
         <sectio class="all_fidback" style="">
             {% for feedback in allFeedbacks %}
                 <div class="card">
-                    
-                    <h4>{{feedback.product}}-{{feedback.rating}} stars</h4>
+                    <h4>{{feedback.product}}-{{feedback.rating}} 
+                        {% if feedback.rating == 5 %} ⭐⭐⭐⭐⭐
+                        {% elif feedback.rating == 4 %} ⭐⭐⭐⭐
+                        {% elif feedback.rating == 3%} ⭐⭐⭐
+                        {% elif feedback.rating == 2%} ⭐⭐
+                        {% elif feedback.rating == 1%} ⭐
+                        {% endif %}
+                    </h4>
                     <p>{{feedback.text}}</p>
                 </div>
             {% endfor %}

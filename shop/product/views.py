@@ -46,6 +46,7 @@ def product_page(request,product_brand,product_slug):
             )
             feeback.save()
             messages.success(request,"Your form is Subimited")
+            form = Feedbackform()
         allFeedbacks = Feedback.objects.filter(product = product)
         return render(request, "product/products.html",{
         "product": product,
